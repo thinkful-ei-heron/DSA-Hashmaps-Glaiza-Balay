@@ -57,14 +57,17 @@ function removeDuplicates(str) {
   let map = new HashMap(str.length);
   let arr = [];
   for(let i=0; i< str.length; i++) {
-    map.set(str[i],str[i]);
+    map.set(str[i], str[i]);
   }
   
-  for(let i=0; i< map.length; i++) {
-    arr.push(map[i]);
-  }
+  //   for (let i=0; i < map._hashTable.length; i++) {
+  //     if (map._hashTable[i] !== undefined) {
+  //       arr.push(map._hashTable[i].value);
+  //     } 
+  //   }
 
   return arr;
+  
 }
 console.log(removeDuplicates('google'));
 
