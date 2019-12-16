@@ -54,20 +54,47 @@ const WhatDoesThisDo = function(){
 
 //4. Remove duplicates 
 function removeDuplicates(str) {
-  let map = new HashMap(str.length);
-  let arr = [];
+  let map = new HashMap();
+
   for(let i=0; i< str.length; i++) {
+      map.set(str[i], str[i]);
+  }
+  // console.log(map);
+
+  let result = '';
+  for(let i=0; i< map._hashTable.length; i++) {
+    if(map._hashTable[i]){
+      result += map._hashTable[i].value;
+    }
+  }
+  //console.log(result); //result = lego
+  
+  //sorting
+  let sort =  '';
+  for(let i=0; i< str.length; i++) {
+    if(result.includes(str[i]) && !sort.includes(str[i])) {
+      sort += str[i];
+    }
+  }
+  // console.log(sort);
+  return sort;
+
+}
+removeDuplicates('google');
+
+//5. Any permutation a palindrome
+function palindrome(str) {
+  let map = new HashMap();
+  
+  for(let i=0; i<str.length; i++) {
     map.set(str[i],str[i]);
   }
-  
-  for(let i=0; i< map.length; i++) {
-    arr.push(map[i]);
+ 
+  if(str.length / map.length <= 2 && str.length / map.length !== 1) {
+    return true;
+  } else {
+    return false;
   }
 
-  return arr;
 }
-console.log(removeDuplicates('google'));
-
-
-
-
+console.log(palindrome('acecarr'));
