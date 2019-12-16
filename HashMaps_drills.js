@@ -99,6 +99,30 @@ function palindrome(str) {
 }
 //console.log(palindrome('acecarr'));
 
+//#6 Anagram grouping
+function groupAnagrams(arr) {
+    let map = new HashMap();
+    for (let idx in arr) {
+      let sorted = arr[idx].split('').sort().join('');
+      let anagrams;
+      try{
+        anagrams = map.get(sorted);
+      } catch(e) {
+        anagrams = [];
+      }
+      anagrams.push(arr[idx]);
+      map.set(sorted, anagrams);
+    }
+
+    let results = [];
+    for(let i in map._hashTable) {
+        results.push(map._hashTable[i].value);
+    }
+    return results;
+  }
+  
+console.log(groupAnagrams(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race']));
+
 function anagrams(arr) {
   let result = [];
 
@@ -120,7 +144,6 @@ function anagrams(arr) {
 
 
 }
-
 
 
 function isAnagram(str1, str2) {
@@ -146,6 +169,6 @@ function isAnagram(str1, str2) {
   
 }
 
-console.log(anagrams(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race']));
+anagrams(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race']);
 
 //console.log(isAnagram('eaht', 'teas'));
