@@ -54,23 +54,98 @@ const WhatDoesThisDo = function(){
 
 //4. Remove duplicates 
 function removeDuplicates(str) {
-  let map = new HashMap(str.length);
-  let arr = [];
+  let map = new HashMap();
+
   for(let i=0; i< str.length; i++) {
     map.set(str[i], str[i]);
   }
-  
-  //   for (let i=0; i < map._hashTable.length; i++) {
-  //     if (map._hashTable[i] !== undefined) {
-  //       arr.push(map._hashTable[i].value);
-  //     } 
-  //   }
+  // console.log(map);
 
-  return arr;
+  let result = '';
+  for(let i=0; i< map._hashTable.length; i++) {
+    if(map._hashTable[i]){
+      result += map._hashTable[i].value;
+    }
+  }
+  //console.log(result); //result = lego
+  
+  //sorting
+  let sort =  '';
+  for(let i=0; i< str.length; i++) {
+    if(result.includes(str[i]) && !sort.includes(str[i])) {
+      sort += str[i];
+    }
+  }
+  // console.log(sort);
+  return sort;
+
+}
+removeDuplicates('google');
+
+//5. Any permutation a palindrome
+function palindrome(str) {
+  let map = new HashMap();
+  
+  for(let i=0; i<str.length; i++) {
+    map.set(str[i],str[i]);
+  }
+ 
+  if(str.length / map.length <= 2 && str.length / map.length !== 1) {
+    return true;
+  } else {
+    return false;
+  }
+
+}
+//console.log(palindrome('acecarr'));
+
+function anagrams(arr) {
+  let result = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    let tempArr = [];
+    let curr = arr[i];
+    tempArr.push(curr);
+    for (let j = 0; j < arr.length; j++) {
+      if (curr !== arr[j]) {
+        if (isAnagram(curr, arr[j])) {
+          tempArr.push(arr[j]);
+        }
+      }
+    }
+    result.push(tempArr);
+  }
+
+  return result;
+
+
+}
+
+
+
+function isAnagram(str1, str2) {
+  let map1 = new HashMap();
+  let map2 = new HashMap();
+
+  for (let i = 0; i < str1.length; i++) {
+    map1.set(str1[i], str1[i]);
+  }
+
+  for (let i = 0; i < str2.length; i++) {
+    map2.set(str2[i], str2[i]);
+  }
+
+  for(var i in map1._hashTable){
+    try{
+      map2.get(map1._hashTable[i].key);
+    }catch(e){
+      return false;
+    }
+  }
+  return true;
   
 }
-console.log(removeDuplicates('google'));
 
+console.log(anagrams(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race']));
 
-
-
+//console.log(isAnagram('eaht', 'teas'));
