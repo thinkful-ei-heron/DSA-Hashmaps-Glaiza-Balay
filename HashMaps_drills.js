@@ -52,8 +52,21 @@ const WhatDoesThisDo = function(){
   console.log(map2.get(str3));//returns 10
 };
 
+//4. Remove duplicates 
+function removeDuplicates(str) {
+  let map = new HashMap(str.length);
+  let arr = [];
+  for(let i=0; i< str.length; i++) {
+    map.set(str[i],str[i]);
+  }
+  
+  for(let i=0; i< map.length; i++) {
+    arr.push(map[i]);
+  }
 
-
+  return arr;
+}
+console.log(removeDuplicates('google'));
 
 
 
